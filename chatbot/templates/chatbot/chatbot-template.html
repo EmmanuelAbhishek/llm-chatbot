@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="chatbot-container">
+    <div class="chatbot-header">
+        <h2>LMS Assistant</h2>
+        <div class="role-selector">
+            <select id="userRole" class="role-select">
+                <option value="student" {% if default_role == 'student' %}selected{% endif %}>Student</option>
+                <option value="lecturer" {% if default_role == 'lecturer' %}selected{% endif %}>Lecturer</option>
+                <option value="admin" {% if default_role == 'admin' %}selected{% endif %}>Administrator</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+        <div class="welcome-message">
+            <h3>Welcome to your LMS Assistant!</h3>
+            <p>I can help you with:</p>
+            <ul>
+                <li>Course-related questions and support</li>
+                <li>Document summarization</li>
+                <li>Educational resources</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="file-upload-area" id="fileUploadArea" style="display: none;">
+        <div class="upload-box">
+            <input type="file" id="pdfFile" accept=".pdf" />
+            <label for="pdfFile">Drop PDF here or click to upload</label>
+        </div>
+        <button id="cancelUpload" class="cancel-button">Cancel</button>
+    </div>
+
+    <div class="chat-input-container">
+        <div class="input-actions">
+            <button id="uploadButton" class="action-button">
+                <i class="fas fa-file-pdf"></i>
+            </button>
+        </div>
+        <div class="input-wrapper">
+            <textarea id="userInput" placeholder="Type your message here..." rows="1"></textarea>
+            <button id="sendMessage" class="send-button">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'chatbot/css/chatbot.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'chatbot/js/chatbot.js' %}"></script>
+{% endblock %}
